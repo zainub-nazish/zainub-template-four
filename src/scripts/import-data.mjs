@@ -48,9 +48,8 @@ async function importData() {
         imageRef = await uploadImageToSanity(item.imagePath);
       }
 
-      const sanityitem = {
+      const sanityItem = {
         _type: 'product',
-        _id: item.id,
         name: item.name,
         category: item.category || null,
         price: item.price,

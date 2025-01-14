@@ -4,19 +4,13 @@ export default {
   title: 'Product',
   fields: [
     {
-      name: 'id',
-      type: 'string',
-      title: 'ID',
-      validation: (Rule: any) => Rule.required().error('ID is required'),
-    },
-    {
       name: 'name',
       type: 'string',
       title: 'Name',
       validation: (Rule: any) => Rule.required().error('Name is required'),
     },
     {
-      name: 'imagePath',
+      name: 'image',
       type: 'image',
       title: 'Image',
       options: {
@@ -50,13 +44,13 @@ export default {
       title: 'Is Featured Product',
     },
     {
-      name: 'StockLevel',
+      name: 'stockLevel',
       type: 'number',
       title: 'Stock Level',
       validation: (Rule: any) => Rule.min(0).error('Stock level must be a positive number.'),
     },
     {
-      name: 'Category',
+      name: 'category',
       type: 'string',
       title: 'Category',
       options: {
