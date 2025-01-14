@@ -38,13 +38,13 @@ async function importData() {
     console.log('Fetching Product Data From API ...');
 
     const response = await axios.get("https://next-ecommerce-template-4.vercel.app/api/product")
-    const products = response.data;
+    const products = response.data.products;
 
     for (const item of products) {
       console.log(`Processing Item: ${item.name}`);
 
       let imageRef = null;
-      if (item.image) {
+      if (item.imagePath) {
         imageRef = await uploadImageToSanity(item.imagePath);
       }
 
