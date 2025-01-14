@@ -37,7 +37,7 @@ async function importData() {
   try {
     console.log('Fetching Product Data From API ...');
 
-    const response = await axios.get("https://sanity-nextjs-rouge.vercel.app/api/products")
+    const response = await axios.get("https://next-ecommerce-template-4.vercel.app/api/product")
     const products = response.data;
 
     for (const item of products) {
