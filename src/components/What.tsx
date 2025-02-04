@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 const What = () => {
   const offers = [
@@ -44,10 +45,12 @@ const What = () => {
               className="bg-white rounded-lg shadow p-6 text-center hover:shadow-lg transition"
             >
               {/* Icon */}
-              <img
+              <Image
                 src={offer.icon}
                 alt={offer.title}
-                className="mx-auto w-12 h-12 mb-4"></img>
+                width={300}
+                height={300}
+                className="mx-auto w-12 h-12 mb-4"/>
               
               {/* Title */}
               <h3 className="text-lg font-semibold text-gray-800">

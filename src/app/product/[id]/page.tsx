@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -13,8 +14,13 @@ const client = createClient({
 });
 
 const builder = imageUrlBuilder(client);
-function urlFor(source: any) {
-  return builder.image(source).url();
+function urlFor(source: string | { asset: { _ref: string } }) {
+  if (typeof source === "string") {
+    return builder.image(source).url();
+  } else if (source?.asset?._ref) {
+    return builder.image(source.asset._ref).url();
+  }
+  return "/default-product-image.jpg";
 }
 
 export interface Product {
@@ -48,7 +54,7 @@ const ProductPage = () => {
 
       try {
         console.log("Fetching product with ID:", id);
-        const query = `*[_type == "product" && _id == "${id}"][0]`;
+        const query = `*[_type == "product" && _id == "${id}"][0]`;  
         const productData = await client.fetch(query);
         setProduct(productData);
       } catch (err) {
@@ -74,18 +80,11 @@ const ProductPage = () => {
     return <p className="text-center text-gray-600">Product is not available.</p>;
   }
 
-
-  //////////////////////////
   const copyProductLink = () => {
     const productURL = window.location.href;
     navigator.clipboard.writeText(productURL);
     alert("Product link copied to clipboard!");
   };
-  
-
-
-
-  /////////////////////////////
 
   return (
     <div className="p-6">
@@ -93,9 +92,11 @@ const ProductPage = () => {
       <p className="text-gray-700 mt-2">Product ID: {product._id}</p>
 
       <div className="mt-4">
-        <img
-          src={urlFor(product.image?.asset?._ref) || "/default-product-image.jpg"}
+        <Image
+          src={product.image ? urlFor(product.image) : "/default-product-image.jpg"}  // ✅ FIXED
           alt={product.name || "Product Image"}
+          width={300}
+          height={300}
           className="w-72 h-72 rounded-lg shadow"
         />
       </div>
@@ -120,4 +121,3 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
-

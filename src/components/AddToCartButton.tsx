@@ -1,15 +1,21 @@
 import React from "react";
 import { useCart } from "./CartContext/CartContext";
 
-const AddToCartButton = ({ product }: { product: any }) => {
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+}
+
+const AddToCartButton = ({ product }: { product: Product }) => {
   const { cartItems, setCartItems } = useCart();
 
-  //useCart
   const addToCart = () => {
-    const existingItem = cartItems.find((item) => item.id === product.id);
+    const existingItem = cartItems.find((item: Product & { quantity: number }) => item.id === product.id);
+
     if (existingItem) {
       setCartItems(
-        cartItems.map((item) =>
+        cartItems.map((item: Product & { quantity: number }) =>
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         )
       );
@@ -29,4 +35,5 @@ const AddToCartButton = ({ product }: { product: any }) => {
 };
 
 export default AddToCartButton;
+
 

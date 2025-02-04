@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const Hero = () => {
   return (
@@ -26,10 +27,12 @@ const Hero = () => {
         <div className="absolute top-2 right-2 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">
           50% off
         </div>
-        <img
+        <Image
           src="/product/chair1.png"
           alt="Furniture Chair"
-          className="w-full h-auto object-contain rounded-md"></img>
+          width={300}
+          height={300}
+          className="w-full h-auto object-contain rounded-md"/>
           
         
       </div>

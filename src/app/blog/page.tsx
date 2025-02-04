@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Image from 'next/image';
 
 
 const BlogPage = () => {
@@ -43,10 +43,12 @@ const BlogPage = () => {
             >
               {/* Image Section */}
               <div className="relative">
-                <img
+                <Image
                   src={blog.image}
                   alt={blog.title}
-                  className="w-full h-52 object-cover"></img>
+                  width={300}
+                  height={300}
+                  className="w-full h-52 object-cover"/>
                 
               </div>
   
