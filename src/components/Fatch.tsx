@@ -16,10 +16,10 @@ export interface Product {
   category: string;
 }
 
-const Fatch = () => {
+const Fatch: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
-  async function fetchProducts() {
+  const fetchProducts = async () => {
     const query = `*[_type == "product"]{
       _id,
       name,
@@ -32,9 +32,14 @@ const Fatch = () => {
       category
     }`;
 
-    const products = await client.fetch(query);
-    setProducts(products);
-  }
+    try {
+      const products = await client.fetch(query);
+      console.log("Fetched products:", products); 
+      setProducts(products);
+    } catch (error) {
+      console.error("Sanity fetch error:", error); 
+    }
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -69,7 +74,3 @@ const Fatch = () => {
 };
 
 export default Fatch;
-
-
-
-
