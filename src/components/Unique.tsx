@@ -11,8 +11,9 @@ const Unique = () => {
         <Image
           src="/product/bluesofa.png" 
           alt="Trending Chair"
-          layout="fill"
-          objectFit="contain"
+          style={{ objectFit: 'cover' }} 
+          width={350}
+          height={300}
           className="rounded-lg shadow-lg"
         />
       </div>

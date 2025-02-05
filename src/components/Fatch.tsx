@@ -32,6 +32,8 @@ const Fatch: React.FC = () => {
       category
     }`;
 
+
+
     try {
       const products = await client.fetch(query);
       console.log("Fetched products:", products); 
@@ -40,6 +42,14 @@ const Fatch: React.FC = () => {
       console.error("Sanity fetch error:", error); 
     }
   };
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     fetchProducts();
